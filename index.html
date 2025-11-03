@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafeinarts Interactive - Solusi IT Profesional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #3b82f6;
+            --dark-bg: #0f172a;
+            --darker-bg: #0a0f1c;
+            --card-bg: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+        }
+        
+        .card-bg {
+            background-color: var(--card-bg);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+        
+        .text-primary {
+            color: var(--primary-blue);
+        }
+        
+        .border-primary {
+            border-color: var(--primary-blue);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header & Navigation -->
+    <header class="fixed w-full z-50 bg-opacity-90 backdrop-blur-sm" style="background-color: rgba(15, 23, 42, 0.9);">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-coffee text-white"></i>
+                    </div>
+                    <h1 class="text-xl font-bold">Kafeinarts <span class="text-primary">Interactive</span></h1>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-white">Beranda</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white">Tentang</a>
+                    <a href="#services" class="nav-link text-gray-300 hover:text-white">Layanan</a>
+                    <a href="#owner" class="nav-link text-gray-300 hover:text-white">Pemilik</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white">Kontak</a>
+                </nav>
+                
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-300 hover:text-white">Beranda</a>
+                <a href="#about" class="block py-2 text-gray-300 hover:text-white">Tentang</a>
+                <a href="#services" class="block py-2 text-gray-300 hover:text-white">Layanan</a>
+                <a href="#owner" class="block py-2 text-gray-300 hover:text-white">Pemilik</a>
+                <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-6 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Solusi IT <span class="gradient-text">Profesional</span> untuk Bisnis Anda</h2>
+                    <p class="text-xl text-gray-300 mb-8">Kafeinarts Interactive menyediakan layanan pengembangan web, desain grafis, dan solusi Office Suite untuk membantu bisnis Anda berkembang di era digital.</p>
+                    <div class="flex space-x-4">
+                        <a href="#services" class="btn-primary text-white px-6 py-3 rounded-lg font-medium">Lihat Layanan</a>
+                        <a href="#contact" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-all">Hubungi Kami</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-500 rounded-full opacity-20 floating"></div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-700 rounded-full opacity-20 floating" style="animation-delay: 1.5s;"></div>
+                        <div class="relative bg-gradient-to-br from-blue-900 to-blue-700 rounded-2xl p-8 shadow-2xl">
+                            <div class="flex justify-center mb-6">
+                                <div class="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center">
+                                    <i class="fas fa-laptop-code text-3xl text-white"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-center mb-4">Transformasi Digital</h3>
+                            <p class="text-center text-gray-300">Kami membantu bisnis Anda bertransformasi digital dengan solusi IT yang inovatif dan efektif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang <span class="gradient-text">Kafeinarts Interactive</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Kami adalah penyedia layanan IT profesional yang berfokus pada pengembangan web/aplikasi, desain grafis, dan solusi Office Suite untuk meningkatkan produktivitas bisnis Anda.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-bg rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-full bg-blue-900 flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Pengembangan Web & App</h3>
+                    <p class="text-gray-400">Kami mengembangkan website dan aplikasi yang responsif, modern, dan sesuai dengan kebutuhan bisnis Anda.</p>
+                </div>
+                
+                <div class="card-bg rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-full bg-blue-900 flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Desain Grafis</h3>
+                    <p class="text-gray-400">Kami menciptakan desain visual yang menarik dan profesional untuk memperkuat branding bisnis Anda.</p>
+                </div>
+                
+                <div class="card-bg rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-full bg-blue-900 flex items-center justify-center mb-4">
+                        <i class="fas fa-file-alt text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Office Suite Specialist</h3>
+                    <p class="text-gray-400">Kami menyediakan template Word, Excel, dan PowerPoint yang dapat disesuaikan dengan kebutuhan bisnis Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gradient-to-b from-dark-bg to-darker-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Layanan <span class="gradient-text">Kami</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Berbagai solusi IT yang kami tawarkan untuk membantu bisnis Anda berkembang lebih pesat.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card card-bg rounded-xl p-6 shadow-lg border border-gray-800" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center">
+                            <i class="fas fa-globe text-blue-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Pengembangan Website</h3>
+                    <p class="text-gray-400 text-center mb-6">Kami membuat website yang responsif, SEO-friendly, dan sesuai dengan identitas bisnis Anda.</p>
+                    <ul class="text-gray-400 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Website Company Profile</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>E-commerce & Toko Online</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Landing Page</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card card-bg rounded-xl p-6 shadow-lg border border-gray-800" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-blue-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Pengembangan Aplikasi</h3>
+                    <p class="text-gray-400 text-center mb-6">Kami mengembangkan aplikasi mobile dan desktop yang fungsional dan user-friendly.</p>
+                    <ul class="text-gray-400 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Aplikasi Mobile</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Aplikasi Desktop</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>UI/UX Design</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card card-bg rounded-xl p-6 shadow-lg border border-gray-800" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center">
+                            <i class="fas fa-paint-brush text-blue-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Desain Grafis</h3>
+                    <p class="text-gray-400 text-center mb-6">Kami menciptakan desain visual yang menarik untuk memperkuat branding bisnis Anda.</p>
+                    <ul class="text-gray-400 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Logo & Branding</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Social Media Design</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Brochure & Banner</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card card-bg rounded-xl p-6 shadow-lg border border-gray-800" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center">
+                            <i class="fas fa-file-word text-blue-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Template Word</h3>
+                    <p class="text-gray-400 text-center mb-6">Template dokumen Word yang profesional dan dapat disesuaikan dengan kebutuhan bisnis.</p>
+                    <ul class="text-gray-400 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Surat & Proposal</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Laporan & Dokumentasi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Template Bisnis</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card card-bg rounded-xl p-6 shadow-lg border border-gray-800" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center">
+                            <i class="fas fa-file-excel text-blue-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Template Excel</h3>
+                    <p class="text-gray-400 text-center mb-6">Template spreadsheet Excel dengan formula dan dashboard untuk analisis data.</p>
+                    <ul class="text-gray-400 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Laporan Keuangan</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Dashboard & Analisis</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Template Inventory</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card card-bg rounded-xl p-6 shadow-lg border border-gray-800" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-blue-900 flex items-center justify-center">
+                            <i class="fas fa-file-powerpoint text-blue-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Template PowerPoint</h3>
+                    <p class="text-gray-400 text-center mb-6">Template presentasi PowerPoint yang profesional dan menarik untuk berbagai keperluan.</p>
+                    <ul class="text-gray-400 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Presentasi Bisnis</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Pitch Deck</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Template Edukasi</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Owner Section -->
+    <section id="owner" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pemilik <span class="gradient-text">Kafeinarts Interactive</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Kenali lebih dekat dengan pemilik dan pendiri Kafeinarts Interactive.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center" data-aos="fade-right">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-primary shadow-lg">
+                            <img src="https://miro.medium.com/v2/resize:fit:2400/1*99hHL9XJ7EzQeC6RB5_Qiw.jpeg" alt="Arif Permana Putrasuryana" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="fas fa-laptop-code text-white text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 md:pl-12" data-aos="fade-left">
+                    <h3 class="text-3xl font-bold mb-4">Arif Permana Putrasuryana</h3>
+                    <p class="text-xl text-primary mb-6">Founder & CEO Kafeinarts Interactive</p>
+                    
+                    <p class="text-gray-300 mb-6">Arif Permana Putrasuryana adalah seorang profesional IT dengan pengalaman lebih dari 5 tahun di bidang pengembangan web, desain grafis, dan solusi Office Suite. Dengan latar belakang pendidikan di bidang Teknik Informatika, Arif memiliki passion yang kuat dalam menciptakan solusi teknologi yang inovatif dan efektif untuk bisnis.</p>
+                    
+                    <p class="text-gray-300 mb-6">Dibawah kepemimpinannya, Kafeinarts Interactive telah membantu berbagai bisnis, dari startup hingga perusahaan established, dalam mentransformasi operasional mereka melalui solusi digital yang tepat guna.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-graduation-cap text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Pendidikan</p>
+                                <p class="text-gray-400">SMK - Software Engineer</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-briefcase text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Pengalaman</p>
+                                <p class="text-gray-400">5+ Tahun</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-project-diagram text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Proyek Selesai</p>
+                                <p class="text-gray-400">50+ Proyek</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-award text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Spesialisasi</p>
+                                <p class="text-gray-400">Web Dev & Office Suite</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="btn-primary text-white px-6 py-3 rounded-lg font-medium">Hubungi Saya</a>
+                        <a href="https://wa.me/6285817048266" target="_blank" class="border border-green-600 text-green-400 px-6 py-3 rounded-lg font-medium hover:bg-green-600 hover:text-white transition-all">
+                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-darker-bg to-dark-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Hubungi <span class="gradient-text">Kami</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Siap untuk mengembangkan proyek Anda? Mari berdiskusi tentang kebutuhan IT bisnis Anda.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-10">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <div class="card-bg rounded-xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6">Kirim Pesan</h3>
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-300 mb-2">Nama Lengkap</label>
+                                <input type="text" id="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-300 mb-2">Subjek</label>
+                                <input type="text" id="subject" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-300 mb-2">Pesan</label>
+                                <textarea id="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary text-white w-full py-3 rounded-lg font-medium">
+                                <i class="fab fa-whatsapp mr-2"></i> Kirim via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <div class="card-bg rounded-xl p-8 shadow-lg h-full">
+                        <h3 class="text-2xl font-bold mb-6">Informasi Kontak</h3>
+                        
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Alamat</h4>
+                                    <p class="text-gray-400 mb-2">Warung Ncetop, Perumahan Sukamaju Permai, Jl. Sukamaju Permai No.3, Sukamaju, Cilodong, Depok City, West Java 16415, Indonesia</p>
+                                    <a href="https://www.google.com/maps/dir//Warung+Ncetop,+perumahan+sukamaju+permai,+Jl.+Sukamaju+Permai+No.3,+Sukamaju,+Cilodong,+Depok+City,+West+Java+16415,+Indonesia/@-6.3955769,106.8514869,16.11z/data=!4m8!4m7!1m0!1m5!1m1!1s0x2e69eb9875f467cd:0xcf8bc8018103b596!2m2!1d106.8554109!2d-6.3989089?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-primary hover:underline">Lihat di Google Maps</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Telepon/WhatsApp</h4>
+                                    <p class="text-gray-400 mb-2">085817048266</p>
+                                    <a href="https://wa.me/6285817048266" target="_blank" class="text-primary hover:underline">Hubungi via WhatsApp</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Email</h4>
+                                    <p class="text-gray-400 mb-2">info@kafeinarts.com</p>
+                                    <a href="mailto:info@kafeinarts.com" class="text-primary hover:underline">Kirim Email</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-lg mb-4">Lokasi Kami</h4>
+                            <div class="rounded-lg overflow-hidden h-64 border border-gray-700">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.618284138201!2d106.8528227749967!3d-6.398908893539656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eb9875f467cd%3A0xcf8bc8018103b596!2sWarung%20Ncetop!5e0!3m2!1sen!2sid!4v1698765432100!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+                            <i class="fas fa-coffee text-white"></i>
+                        </div>
+                        <h2 class="text-xl font-bold">Kafeinarts <span class="text-primary">Interactive</span></h2>
+                    </div>
+                    <p class="text-gray-500 mt-2">Solusi IT Profesional untuk Bisnis Anda</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://wa.me/6285817048266" target="_blank" class="text-gray-400 hover:text-green-400 transition-colors">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-300 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 Kafeinarts Interactive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Format WhatsApp message
+            const whatsappMessage = `Halo, saya ${name} (${email}). Saya tertarik dengan layanan Kafeinarts Interactive. Subjek: ${subject}. Pesan: ${message}`;
+            
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/6285817048266?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Show success message
+            Swal.fire({
+                title: 'Pesan Terkirim!',
+                text: 'Pesan Anda telah dikirim melalui WhatsApp. Kami akan segera merespons.',
+                icon: 'success',
+                confirmButtonColor: '#2563eb',
+                confirmButtonText: 'OK'
+            });
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(15, 23, 42, 0.9)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
